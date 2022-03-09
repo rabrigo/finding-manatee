@@ -1,0 +1,76 @@
+body {
+  color: white;
+  background-color: rgb(37, 82, 159);
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-logo {
+  margin: 50px 25px 25px 50px;
+}
+
+.grid {
+  height: 800px;
+  width: 800px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1em;
+}
+
+.square {
+  color: rgb(12, 65, 155);
+  background-color: rgb(234, 242, 247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transform: rotateY(180deg);
+  animation: 2s hideSquare linear;
+  transition: transform 0.5s;
+}
+
+@keyframes hideSquare{
+  0% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.square img {
+  max-width: 100px;
+  max-height: 100px;
+  transform: scale(0);
+  animation: 2s hideImage linear;
+  transition: transform 0.5s;
+}
+
+@keyframes hideImage{
+  0%, 70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.square.active {
+  transform: rotateY(0);
+}
+
+.square.correct {
+  background-color: rgb(187, 255, 85);
+}
+
+.square.wrong {  
+  background-color: rgb(230, 93, 93);
+}
+
+.square.active img {
+  transform: scale(1);
+}
