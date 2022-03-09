@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Square from './Square';
+import Card from './Card';
 
-function Grid() {
+function Board() {
     const [cards, setCards] = useState([
         { id: 1, img: '/images/manatee.png', status: ""},
         { id: 1, img: '/images/manatee.png', status: ""},
@@ -21,20 +21,44 @@ function Grid() {
         { id: 8, img: '/images/shrimp.png', status: ""},
     ].sort(() => Math.random() - 0.5))
 
-    const [prev, setPrev] = useState(-1);
+    const [previous, setPrevious] = useState(-1);
+
+    const checkCard = (current) => {
+        if(cards[current].id == cards[previous].id) {
+            cards[current].status = "correct";
+            cards[previous].status = "correct";
+            setCards([...cards]);
+            setPrevious(-1);
+        } else {
+            cards[current].status = "incorrect";
+            cards[previous].status = "incorrect";
+            setCards([...cards]);
+            setTimeout(() => {
+                cards[current].status = "";
+                cards[previous].status = "";
+                setCards([...cards]);
+                setPrevious(-1);
+            }, 1000)
+        }
+    }
 
     const handleClick = (id) => {
-        cards[id].status = "active";
-        setCards([...cards]);
+        if (previous === -1) {
+            cards[id].status = "active";
+            setCards([...cards]);
+            setPrevious(id);
+        } else {
+            checkCard(id);
+        }
     }
 
     return (
-        <div className="grid">
+        <div className="board">
             { cards.map((card, index) => (
-                <Square key={index} card={card} id={index} handleClick={handleClick}/>
+                <Card key={index} card={card} id={index} handleClick={handleClick}/>
             ))}
         </div>
     );
 }
 
-export default Grid;
+export default Board;

@@ -12,7 +12,7 @@ body {
   margin: 50px 25px 25px 50px;
 }
 
-.grid {
+.board {
   height: 800px;
   width: 800px;
   display: grid;
@@ -21,7 +21,7 @@ body {
   gap: 1em;
 }
 
-.square {
+.card {
   color: rgb(12, 65, 155);
   background-color: rgb(234, 242, 247);
   display: flex;
@@ -42,7 +42,7 @@ body {
   }
 }
 
-.square img {
+.card img {
   max-width: 100px;
   max-height: 100px;
   transform: scale(0);
@@ -59,18 +59,18 @@ body {
   }
 }
 
-.square.active {
+.card.active {
   transform: rotateY(0);
 }
 
-.square.correct {
+.card.correct {
   background-color: rgb(187, 255, 85);
 }
 
-.square.wrong {  
+.card.incorrect {  
   background-color: rgb(230, 93, 93);
 }
 
-.square.active img {
+.card.active img {
   transform: scale(1);
 }
