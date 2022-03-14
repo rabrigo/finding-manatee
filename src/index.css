@@ -22,6 +22,7 @@ body {
 }
 
 .card {
+  user-select: none;
   color: rgb(12, 65, 155);
   background-color: rgb(234, 242, 247);
   display: flex;
